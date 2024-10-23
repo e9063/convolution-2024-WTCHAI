@@ -34,7 +34,8 @@ int main(){
     int *R = malloc(sizeof(int) * (NA - NF + 1)) ;
 
     double start_time = omp_get_wtime();
-    omp_set_num_threads(8);
+    omp_set_num_threads(4);
+
     #pragma omp parallel for
     for (int i = 0; i <= NA - NF; i++) {
         R[i] = 0; 
@@ -43,12 +44,12 @@ int main(){
         }
     }
     double end_time = omp_get_wtime();
-    printf("Parallel execution time: %f seconds\n", end_time - start_time);
-
 
     for (int i = 0 ; i <= NA - NF ; i++){
         printf("%d\n", R[i]) ;
     }
+    printf("Parallel execution time: %f seconds\n", end_time - start_time);
+
     // ---- free memory ----
     free(FF);
     free(F);

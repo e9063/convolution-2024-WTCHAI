@@ -32,7 +32,7 @@ int main(){
     // Initialize R as a result array
     int *R = malloc(sizeof(int) * (NA - NF + 1)) ;
     double start_time = omp_get_wtime();
-    omp_set_num_threads(8);
+    
     for (int i = 0; i <= NA - NF; i++) {
         R[i] = 0; 
         for (int j = 0; j < NF; j++) {
@@ -40,12 +40,12 @@ int main(){
         }
     }
     double end_time = omp_get_wtime();
-    printf("Sequential execution time: %f seconds\n", end_time - start_time);
-
 
     for (int i = 0 ; i <= NA - NF ; i++){
         printf("%d\n", R[i]) ;
     }
+    printf("Sequential execution ftime: %f seconds\n", end_time - start_time);
+
     // ---- free memory ----
     free(FF);
     free(F);
