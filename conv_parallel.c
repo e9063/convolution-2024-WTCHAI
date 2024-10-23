@@ -19,8 +19,6 @@ int main(){
     // ---- end input and malloc----
 
     // implement here
-    omp_set_num_threads(4);
-
     // FF initialize creating reverse array of F
     int *FF = malloc(sizeof(int) *NF) ; 
     for ( int i = 0 ; i < NF ; i++) { 
@@ -36,6 +34,7 @@ int main(){
     int *R = malloc(sizeof(int) * (NA - NF + 1)) ;
 
     double start_time = omp_get_wtime();
+    omp_set_num_threads(8);
     #pragma omp parallel for
     for (int i = 0; i <= NA - NF; i++) {
         R[i] = 0; 
